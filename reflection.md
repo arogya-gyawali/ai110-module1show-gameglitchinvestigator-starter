@@ -5,8 +5,12 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+The game looked perfect and I thought that I almost had the number guessed. It kept on going and then ended the game but the answer was surprising.
 - List at least two concrete bugs you noticed at the start  
   (for example: "the secret number kept changing" or "the hints were backwards").
+  The hints that were given did not match the secret number.
+  I had 1 attempt left but the game ended early.
+  Clicking the new game button was not working, it did not start a new game.
 
 ---
 
