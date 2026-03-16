@@ -12,27 +12,23 @@ def parse_guess(raw: str):
     raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
 
 
+# AI Collaboration Note: The original check_guess function returned a tuple (outcome, message),
+# e.g. ("Too High", "📉 Go LOWER!"). However, the pytest tests expected only the outcome string.
+# Claude (AI) assisted in identifying this mismatch and refactored the function to return only
+# "Win", "Too High", or "Too Low". The try/except block and emoji messages were also removed
+# as they were unnecessary once the logic was simplified to work with integer comparisons.
 def check_guess(guess, secret):
     """
-    Compare guess to secret and return (outcome, message).
+    Compare guess to secret and return the outcome string.
 
-    outcome examples: "Win", "Too High", "Too Low"
+    Returns: "Win", "Too High", or "Too Low"
     """
     if guess == secret:
-        return "Win", "🎉 Correct!"
-
-    try:
-        if guess > secret:
-            return "Too High", "📉 Go LOWER!"
-        else:
-            return "Too Low", "📈 Go HIGHER!"
-    except TypeError:
-        g = str(guess)
-        if g == secret:
-            return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📉 Go LOWER!"
-        return "Too Low", "📈 Go HIGHER!"
+        return "Win"
+    elif guess > secret:
+        return "Too High"
+    else:
+        return "Too Low"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):

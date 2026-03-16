@@ -14,3 +14,18 @@ def test_guess_too_low():
     # If secret is 50 and guess is 40, hint should be "Too Low"
     result = check_guess(40, 50)
     assert result == "Too Low"
+
+def test_negative_guess():
+    # A negative guess below the secret should return "Too Low"
+    result = check_guess(-10, 50)
+    assert result == "Too Low"
+
+def test_very_large_guess():
+    # A very large guess above the secret should return "Too High"
+    result = check_guess(1000000, 50)
+    assert result == "Too High"
+
+def test_decimal_guess():
+    # A decimal guess above the secret should return "Too High"
+    result = check_guess(50.5, 50)
+    assert result == "Too High"

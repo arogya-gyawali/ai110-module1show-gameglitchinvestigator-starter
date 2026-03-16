@@ -25,13 +25,42 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+**Game purpose:** A number guessing game where the player tries to identify a secret number within a limited number of attempts, guided by Higher/Lower hints.
+
+**Bugs found:**
+- The hints were backwards — "Too High" displayed when the guess was actually too low, and vice versa.
+- The secret number regenerated on every Streamlit rerun (every button click), making it impossible to win.
+- The New Game button did not properly reset the game state.
+
+**Fixes applied:**
+- Fixed the hint logic in `check_guess` so comparisons correctly reflect the relationship between guess and secret.
+- Stored the secret number in `st.session_state` so it persists across reruns.
+- Refactored `check_guess` into `logic_utils.py` and simplified it to return only the outcome string (`"Win"`, `"Too High"`, or `"Too Low"`), removing the broken tuple return that caused all pytest tests to fail.
+- AI tools (Claude via Claude Code) were used to identify the tuple-vs-string mismatch and assist with the refactor. The fix was verified by running `pytest tests/test_game_logic.py`, which went from 3 failures to 3 passes.
 
 ## 📸 Demo
 
+To run the fixed app locally:
+
+```bash
+streamlit run app.py
+```
+
+The app will open in your browser. Enter a guess, click Submit, and use the Higher/Lower hints to find the secret number. The game tracks your attempts and shows a win screen when you guess correctly.
+
 - [ ] [Insert a screenshot of your fixed, winning game here]
+
+## 🧪 Edge Case Testing
+
+Additional pytest tests were added to verify that `check_guess` handles unusual inputs correctly:
+
+- **Negative guesses** (e.g. `-10`) — correctly returns `"Too Low"`
+- **Decimal guesses** (e.g. `50.5`) — correctly returns `"Too High"`
+- **Extremely large guesses** (e.g. `1000000`) — correctly returns `"Too High"`
+
+These edge cases ensure the function behaves reliably beyond the normal 1–100 range.
+
+![Pytest Results](images/pytest_results.png)
 
 ## 🚀 Stretch Features
 
