@@ -48,7 +48,7 @@ streamlit run app.py
 
 The app will open in your browser. Enter a guess, click Submit, and use the Higher/Lower hints to find the secret number. The game tracks your attempts and shows a win screen when you guess correctly.
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [ image copy.png ] 
 
 ## 🧪 Edge Case Testing
 
@@ -60,7 +60,7 @@ Additional pytest tests were added to verify that `check_guess` handles unusual 
 
 These edge cases ensure the function behaves reliably beyond the normal 1–100 range.
 
-![Pytest Results](images/pytest_results.png)
+![Pytest Results](image.png)
 
 ## 🚀 Stretch Features
 
